@@ -13,7 +13,7 @@ python train_llava.py \
     --data_path ./dataset/llava_pretrain_blip_laion_cc_sbu_558k_ja.json \
     --lazy_preprocess False \
     --is_multimodal True \
-    --image_folder ~/datasets/images \
+    --image_folder ./dataset/llava-pretrain \
     --image_aspect_ratio square \
     --image_size 768 \
     --optim adamw_torch \
