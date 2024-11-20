@@ -13,8 +13,10 @@ module load cudnn/8.8.1
 pyenv shell 3.10.15
 source /work/gn53/k75057/musasabi/bin/activate
 
-pip uninstall torch torchvision torchaudio
-pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu121
+pip install torch==2.1.2+cu121 -f https://download.pytorch.org/whl/torch_stable.html
+
+# pip uninstall torch torchvision torchaudio
+# pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu121
 
 # readonly LLAVA_JP_HOME="/work/gn53/k75057/projects/LLaVA-JP"
 
