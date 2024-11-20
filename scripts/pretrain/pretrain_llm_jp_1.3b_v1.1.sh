@@ -13,6 +13,8 @@ module load cudnn/8.8.1
 pyenv shell 3.10.15
 source /work/gn53/k75057/musasabi/bin/activate
 
+readonly LLAVA_JP_HOME="/work/gn53/k75057/projects/LLaVA-JP"
+
 python train_llava.py \
     --model_name_or_path llm-jp/llm-jp-1.3b-v1.0 \
     --version plain \
@@ -23,10 +25,10 @@ python train_llava.py \
     --mm_projector_type mlp2x_gelu \
     --mm_vision_select_feature patch \
     --scales 1.0 0.5 \
-    --data_path ./dataset/llava_pretrain_blip_laion_cc_sbu_558k_ja.json \
+    --data_path $LLAVA_JP_HOME/dataset/llava_pretrain_blip_laion_cc_sbu_558k_ja.json \
     --lazy_preprocess False \
     --is_multimodal True \
-    --image_folder ./dataset/llava-pretrain \
+    --image_folder $LLAVA_JP_HOME/dataset/llava-pretrain \
     --image_aspect_ratio square \
     --image_size 768 \
     --optim adamw_torch \
@@ -37,7 +39,7 @@ python train_llava.py \
     --group_by_modality_length False \
     --fp16 False \
     --bf16 True \
-    --output_dir ./output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384 \
+    --output_dir $LLAVA_JP_HOME/output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384 \
     --num_train_epochs 1 \
     --per_device_train_batch_size 8 \
     --per_device_eval_batch_size 4 \
