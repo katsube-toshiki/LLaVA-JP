@@ -1,4 +1,17 @@
-#!/bin/bash
+#!/bin/sh
+#PJM -L rscgrp=share-short
+#PJM -L gpu=2
+#PJM -L elapse=02:00:00
+#PJM --mail-list katsube@mi.t.u-tokyo.ac.jp
+#PJM -m b,e,r
+#PJM -g gn53
+#PJM -X
+#PJM -j
+module load cuda/12.1
+module load cudnn/8.8.1
+
+pyenv shell 3.10.15
+source /work/gn53/k75057/musasabi/bin/activate
 
 python train_llava.py \
     --model_name_or_path llm-jp/llm-jp-1.3b-v1.0 \
