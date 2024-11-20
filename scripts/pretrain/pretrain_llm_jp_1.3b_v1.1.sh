@@ -46,7 +46,7 @@ python $LLAVA_JP_HOME/train_llava.py \
     --bf16 True \
     --output_dir $LLAVA_JP_HOME/output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384 \
     --num_train_epochs 1 \
-    --per_device_train_batch_size 1 \
+    --per_device_train_batch_size 8 \
     --per_device_eval_batch_size 4 \
     --gradient_accumulation_steps 4 \
     --evaluation_strategy "no" \
