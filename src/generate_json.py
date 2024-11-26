@@ -1,6 +1,6 @@
 import json
 import os
-import pandas as pd
+import csv
 
 prompts = ['写真の概要を簡潔に説明してください。\n<image>',
            '写真の簡潔な要約を書いてください。\n<image>',
@@ -26,19 +26,9 @@ json_data = []
 for csv_file in os.listdir(csv_dir):
     if csv_file.endswith('.csv'):
         csv_path = os.path.join(csv_dir, csv_file)
-        df = pd.read_csv(csv_path)
-        print(df)
         
-        # for index, row in df.iterrows():
-        #     for prompt in prompts:
-        #         json_data.append({
-        #             'prompt': prompt,
-        #             'image_path': row['image_path'],
-        #             'caption': row['caption']
-        #         })
+        with open(csv_path, 'r') as f:
+            reader = csv.reader(f)
+            l = [row for row in reader]
 
-print(json_data)
-        
-        # json_file = os.path.join(json_dir, os.path.splitext(csv_file)[0] + '.json')
-        # with open(json_file, 'w', encoding='utf-8') as f:
-        #     json.dump(json_data, f, ensure_ascii=False, indent=4)
+            print(l)
