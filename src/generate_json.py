@@ -31,7 +31,7 @@ for i, csv_file in enumerate(os.listdir(csv_dir)):
         j = 0
         for row in reader:
             json_data.append({
-                "id": "{}{}".forrmat(str(i).zfill(8), row[0]),
+                "id": "{}{}".format(str(i).zfill(8), row[0]),
                 "image": row[1].replace("/work/gn53/k75057/projects/commoncrawl/data/images/", ""),
                 "conversations": [
                     {
