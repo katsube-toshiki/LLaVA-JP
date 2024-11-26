@@ -23,12 +23,27 @@ if not os.path.exists(json_dir):
 
 json_data = []
 
-for csv_file in os.listdir(csv_dir):
-    if csv_file.endswith('.csv'):
-        csv_path = os.path.join(csv_dir, csv_file)
-        
-        with open(csv_path, 'r') as f:
-            reader = csv.reader(f)
-            l = [row for row in reader]
-
-            print(l)
+for i, csv_file in enumerate(os.listdir(csv_dir)):
+    csv_path = os.path.join(csv_dir, csv_file)
+    
+    with open(csv_path, 'r') as f:
+        reader = csv.reader(f)
+        j = 0
+        for row in reader:
+            json_data.append({
+                "id": "{}{}".forrmat(str(i).zfill(8), row[0]),
+                "image": row[1].replace("/work/gn53/k75057/projects/commoncrawl/data/images/", ""),
+                "conversations": [
+                    {
+                        "from": "ユーザー",
+                        "value": prompts[j % len(prompts)],
+                    },
+                    {
+                        "from": "システム",
+                        "value": row[2],
+                    }
+                ]
+            })
+            j += 1
+    
+print(json_data)
