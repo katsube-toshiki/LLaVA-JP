@@ -13,12 +13,8 @@ module load cudnn/8.8.1
 pyenv shell 3.10.15
 source /work/gn53/k75057/musasabi/bin/activate
 
-# pip install torch==2.1.2+cu121 -f https://download.pytorch.org/whl/torch_stable.html
-
-# pip uninstall torch torchvision torchaudio
-# pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu121
-
 readonly LLAVA_JP_HOME="/work/gn53/k75057/projects/LLaVA-JP"
+readonly COMMONCRAWL_HOME="/work/gn53/k75057/projects/commoncrawl"
 
 python $LLAVA_JP_HOME/train_llava.py \
     --model_name_or_path llm-jp/llm-jp-1.3b-v1.0 \
@@ -30,7 +26,7 @@ python $LLAVA_JP_HOME/train_llava.py \
     --mm_projector_type mlp2x_gelu \
     --mm_vision_select_feature patch \
     --scales 1.0 0.5 \
-    --data_path $LLAVA_JP_HOME/dataset/llava_pretrain_blip_laion_cc_sbu_558k_ja.json \
+    --data_path $COMMONCRAWL_HOME/data/output_json/llava_pretrain.json \
     --lazy_preprocess False \
     --is_multimodal True \
     --image_folder $LLAVA_JP_HOME/dataset/llava-pretrain \

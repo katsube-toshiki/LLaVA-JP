@@ -47,3 +47,5 @@ json_path = os.path.join(json_dir, "llava_pretrain.json")
 with open(json_path, 'w') as f:
     json.dump(json_data, f, ensure_ascii=False, indent=2)
     print("Generated JSON file: {}".format(json_path))
+
+print("datasize: {}".format(len(json_data)))
