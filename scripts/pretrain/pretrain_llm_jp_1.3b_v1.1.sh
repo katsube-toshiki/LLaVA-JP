@@ -1,7 +1,6 @@
 #!/bin/sh
-#PJM -L rscgrp=share-short
+#PJM -L rscgrp=share
 #PJM -L gpu=1
-#PJM -L elapse=02:00:00
 #PJM --mail-list katsube@mi.t.u-tokyo.ac.jp
 #PJM -m b,e,r
 #PJM -g gn53
@@ -26,10 +25,10 @@ python $LLAVA_JP_HOME/train_llava.py \
     --mm_projector_type mlp2x_gelu \
     --mm_vision_select_feature patch \
     --scales 1.0 0.5 \
-    --data_path $COMMONCRAWL_HOME/data/output_json/llava_pretrain.json \
+    --data_path $COMMONCRAWL_HOME/data/output_json/llava_pretrain_68k.json.json \
     --lazy_preprocess False \
     --is_multimodal True \
-    --image_folder $LLAVA_JP_HOME/dataset/llava-pretrain \
+    --image_folder $COMMONCRAWL_HOME/data/images \
     --image_aspect_ratio square \
     --image_size 768 \
     --optim adamw_torch \
