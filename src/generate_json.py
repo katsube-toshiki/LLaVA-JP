@@ -18,9 +18,6 @@ prompts = ['写真の概要を簡潔に説明してください。\n<image>',
 csv_dir = "/work/gn53/k75057/projects/commoncrawl/data/output_csv"
 json_dir = "/work/gn53/k75057/projects/commoncrawl/data/output_json"
 
-if not os.path.exists(json_dir):
-    os.makedirs(json_dir)
-
 json_data = []
 
 for i, csv_file in enumerate(os.listdir(csv_dir)):
@@ -31,7 +28,7 @@ for i, csv_file in enumerate(os.listdir(csv_dir)):
         j = 0
         for row in reader:
             json_data.append({
-                "id": "{}{}".format(str(i).zfill(8), row[0]),
+                "id": "{}{}".format(str(i).zfill(5), row[0]),
                 "image": row[1].replace("/work/gn53/k75057/projects/commoncrawl/data/images/", ""),
                 "conversations": [
                     {
@@ -46,4 +43,7 @@ for i, csv_file in enumerate(os.listdir(csv_dir)):
             })
             j += 1
     
-print(json_data)
+json_path = os.path.join(json_dir, "llava_pretrain.json")
+with open(json_path, 'w') as f:
+    json.dump(json_data, f, ensure_ascii=False, indent=2)
+    print("Generated JSON file: {}".format(json_path))
