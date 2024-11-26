@@ -27,14 +27,15 @@ for csv_file in os.listdir(csv_dir):
     if csv_file.endswith('.csv'):
         csv_path = os.path.join(csv_dir, csv_file)
         df = pd.read_csv(csv_path)
+        print(df)
         
-        for index, row in df.iterrows():
-            for prompt in prompts:
-                json_data.append({
-                    'prompt': prompt,
-                    'image_path': row['image_path'],
-                    'caption': row['caption']
-                })
+        # for index, row in df.iterrows():
+        #     for prompt in prompts:
+        #         json_data.append({
+        #             'prompt': prompt,
+        #             'image_path': row['image_path'],
+        #             'caption': row['caption']
+        #         })
 
 print(json_data)
         
