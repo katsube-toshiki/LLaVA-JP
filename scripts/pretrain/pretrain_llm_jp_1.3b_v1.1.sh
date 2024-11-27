@@ -25,7 +25,7 @@ python $LLAVA_JP_HOME/train_llava.py \
     --mm_projector_type mlp2x_gelu \
     --mm_vision_select_feature patch \
     --scales 1.0 0.5 \
-    --data_path $COMMONCRAWL_HOME/data/output_json/llava_pretrain_68k.json.json \
+    --data_path $COMMONCRAWL_HOME/data/output_json/llava_pretrain_68k.json \
     --lazy_preprocess False \
     --is_multimodal True \
     --image_folder $COMMONCRAWL_HOME/data/images \
