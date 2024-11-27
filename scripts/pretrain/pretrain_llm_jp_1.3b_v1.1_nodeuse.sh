@@ -1,6 +1,7 @@
 #!/bin/sh
 #PJM -L rscgrp=regular-a
 #PJM -L node=1
+#PJM -L gpu=1
 #PJM -L elapse=24:00:00
 #PJM --mail-list katsube@mi.t.u-tokyo.ac.jp
 #PJM -m b,e,r
