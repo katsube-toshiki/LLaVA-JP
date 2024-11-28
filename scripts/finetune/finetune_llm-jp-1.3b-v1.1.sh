@@ -1,4 +1,3 @@
-#!/bin/bash
 #!/bin/sh
 #PJM -L rscgrp=share
 #PJM -L gpu=1
