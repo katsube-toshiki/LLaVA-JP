@@ -43,7 +43,7 @@ for i, csv_file in enumerate(os.listdir(csv_dir)):
             })
             j += 1
     
-json_filename = "llava_pretrain_{}.json".format(int(len(json_data)/100))
+json_filename = "llava_pretrain_{}k.json".format(int(len(json_data)/1000))
 json_path = os.path.join(json_dir, json_filename)
 with open(json_path, 'w') as f:
     json.dump(json_data, f, ensure_ascii=False, indent=2)
