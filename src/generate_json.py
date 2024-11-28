@@ -2,17 +2,17 @@ import json
 import os
 import csv
 
-prompts = ['写真の概要を簡潔に説明してください。\n<image>',
-           '写真の簡潔な要約を書いてください。\n<image>',
-           'これは何ですか？\n<image>',
-           '写真には何が写っていますか？\n<image>',
-           'イメージを簡潔に説明してください。\n<image>',
-           '提供された画像の簡潔な解釈を共有してください。\n<image>',
-           '画像の簡単な説明をしてください。\n<image>',
-           '写真の主な特徴をコンパクトに説明してください。\n<image>',
-           '与えられた画像について簡単な説明をしてください。\n<image>',
-           '画像の内容を要約してください。\n<image>',
-           'その後に続く画像について、簡潔でわかりやすい説明をしてください。\n<image>'
+prompts = ['与えられた画像を表す簡潔な文を作成してください。\n<image>',
+           '画像について簡単に説明してください。\n<image>',
+           '与えられた画像について簡単に説明してください。\n<image>',
+           '入力された写真について簡単に説明してください。\n<image>',
+           '画像の内容を教えてください。\n<image>',
+           '次の画像を短く分かりやすく説明してください。\n<image>',
+           '与えられた画像について教えてください。\n<image>',
+           '写真の特徴を手短に教えてください。\n<image>',
+           'この画像について短い言葉で説明してください。\n<image>',
+           '写真の概要を簡潔かつ分かりやすく伝えてください。\n<image>',
+           '写真について簡単に説明してください。\n<image>',
            ]
 
 csv_dir = "/work/gn53/k75057/projects/commoncrawl/data/output_csv"
@@ -43,7 +43,8 @@ for i, csv_file in enumerate(os.listdir(csv_dir)):
             })
             j += 1
     
-json_path = os.path.join(json_dir, "llava_pretrain.json")
+json_filename = "llava_pretrain_{}.json".format(int(len(json_data)/100))
+json_path = os.path.join(json_dir, json_filename)
 with open(json_path, 'w') as f:
     json.dump(json_data, f, ensure_ascii=False, indent=2)
     print("Generated JSON file: {}".format(json_path))
