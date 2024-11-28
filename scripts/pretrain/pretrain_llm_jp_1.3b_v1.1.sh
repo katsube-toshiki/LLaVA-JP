@@ -1,7 +1,6 @@
 #!/bin/sh
 #PJM -L rscgrp=share
 #PJM -L gpu=1
-#PJM -L elapse=00:05:00
 #PJM --mail-list katsube@mi.t.u-tokyo.ac.jp
 #PJM -m b,e,r
 #PJM -g gn53
