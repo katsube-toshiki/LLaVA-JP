@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
     train_data_paths = [
-        './output_llava_llm_jp/finetuning-llava-v1.5-llm-jp-bf',
+        '../output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384',
     ]
 
     train_losses = []
@@ -23,4 +23,4 @@ if __name__ == '__main__':
     plt.xlabel('Step')
     plt.ylabel('Loss')
     plt.legend(loc='upper right')
-    plt.show()
+    plt.savefig("graph.png")
