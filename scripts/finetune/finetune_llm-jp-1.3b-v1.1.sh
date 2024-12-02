@@ -22,14 +22,14 @@ python $LLAVA_JP_HOME/train_llava.py \
     --tune_mm_mlp_adapter False \
     --vision_tower google/siglip-so400m-patch14-384 \
     --mm_vision_select_layer -2 \
-    --pretrain_mm_mlp_adapter $LLAVA_JP_HOME/output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384/mm_projector.bin \
+    --pretrain_mm_mlp_adapter $LLAVA_JP_HOME/output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384-357k/mm_projector.bin \
     --mm_projector_type mlp2x_gelu \
     --mm_vision_select_feature patch \
     --scales 1.0 0.5 \
-    --data_path $COMMONCRAWL_HOME/data/output_json/llava_pretrain_68k.json \
+    --data_path $LLAVA_JP_HOME/dataset/llava_v1_5_instruct_620k_ja_v2.json \
     --lazy_preprocess False \
     --is_multimodal True \
-    --image_folder $COMMONCRAWL_HOME/data/images \
+    --image_folder $LLAVA_JP_HOME/dataset \
     --image_aspect_ratio square \
     --image_size 768 \
     --optim adamw_bnb_8bit \
@@ -40,7 +40,7 @@ python $LLAVA_JP_HOME/train_llava.py \
     --group_by_modality_length True \
     --fp16 False \
     --bf16 True \
-    --output_dir $LLAVA_JP_HOME/output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384 \
+    --output_dir $LLAVA_JP_HOME/output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384-357k \
     --num_train_epochs 1 \
     --per_device_train_batch_size 1 \
     --per_device_eval_batch_size 2 \

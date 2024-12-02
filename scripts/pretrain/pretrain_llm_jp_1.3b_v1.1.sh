@@ -25,7 +25,7 @@ python $LLAVA_JP_HOME/train_llava.py \
     --mm_projector_type mlp2x_gelu \
     --mm_vision_select_feature patch \
     --scales 1.0 0.5 \
-    --data_path $COMMONCRAWL_HOME/data/output_json/llava_pretrain_68k.json \
+    --data_path $COMMONCRAWL_HOME/data/output_json/llava_pretrain_357k.json \
     --lazy_preprocess False \
     --is_multimodal True \
     --image_folder $COMMONCRAWL_HOME/data/images \
@@ -39,7 +39,7 @@ python $LLAVA_JP_HOME/train_llava.py \
     --group_by_modality_length False \
     --fp16 False \
     --bf16 True \
-    --output_dir $LLAVA_JP_HOME/output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384 \
+    --output_dir $LLAVA_JP_HOME/output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384-357k \
     --num_train_epochs 1 \
     --per_device_train_batch_size 8 \
     --per_device_eval_batch_size 4 \
