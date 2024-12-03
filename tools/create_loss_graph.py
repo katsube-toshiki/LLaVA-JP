@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
     train_data_paths = [
-        '../output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384'
+        '../output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384',
         '../output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384-357k'
     ]
 
