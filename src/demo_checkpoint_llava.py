@@ -38,8 +38,9 @@ if __name__ == "__main__":
     conv = conv_templates[conv_mode].copy()
 
     # image pre-process
-    image_url = "https://huggingface.co/rinna/bilingual-gpt-neox-4b-minigpt4/resolve/main/sample.jpg"
-    image = Image.open(requests.get(image_url, stream=True).raw).convert('RGB')
+    # image_url = "https://huggingface.co/rinna/bilingual-gpt-neox-4b-minigpt4/resolve/main/sample.jpg"
+    # image = Image.open(requests.get(image_url, stream=True).raw).convert('RGB')
+    image = Image.open("/work/gn53/k75057/projects/LLaVA-JP/scripts/out").convert('RGB')
     
     image_size = model.get_model().vision_tower.image_processor.size["height"]
     if model.get_model().vision_tower.scales is not None:
