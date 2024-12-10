@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     caption_data_json = caption_data_json1 + caption_data_json2
 
-    chat_ja_path = Path(new_base_path, 'laioncc_w_1022k.json')
+    chat_ja_path = Path(new_base_path, 'gpt_w_1022k.json')
     with open(chat_ja_path, mode="w") as f:
         json.dump(caption_data_json, f, indent=2, ensure_ascii=False)
     
