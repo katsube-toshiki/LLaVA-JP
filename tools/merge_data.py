@@ -17,13 +17,13 @@ if __name__ == '__main__':
         caption_data = f.read()
         caption_data_json1 = json.loads(caption_data)
         for i in range(len(caption_data_json1)):
-            caption_data_json1[i]['image'] = Path(marge_data_path1, caption_data_json1[i]["image"]).relative_to(new_base_path)
+            caption_data_json1[i]['image'] = os.path.relpath(Path(marge_data_path1, caption_data_json1[i]["image"]), new_base_path)
 
     with marge_json_path2.open('r', encoding='utf-8') as f:
         caption_data = f.read()
         caption_data_json2 = json.loads(caption_data)
         for i in range(len(caption_data_json2)):
-            caption_data_json2[i]['image'] = Path(marge_data_path2, caption_data_json2[i]["image"]).relative_to(new_base_path)
+            caption_data_json2[i]['image'] = os.path.relpath(Path(marge_data_path2, caption_data_json2[i]["image"]), new_base_path)
 
     caption_data_json = caption_data_json1 + caption_data_json2
 
