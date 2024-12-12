@@ -11,7 +11,7 @@ if __name__ == '__main__':
     marge_data_path1 = Path(base_path, "commoncrawl/data/images")
 
     marge_json_path2 = Path(base_path, "LLaVA-JP/dataset", 'llava_v1_5_instruct_620k_ja_v2.json')
-    marge_data_path2 = Path(base_path, "LLaVA-JP/dataset")
+    marge_data_path2 = Path(base_path, "LLaVA-JP/dataset/llava-finetune")
 
     with marge_json_path1.open('r', encoding='utf-8') as f:
         caption_data = f.read()
