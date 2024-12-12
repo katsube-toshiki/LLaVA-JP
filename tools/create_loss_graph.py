@@ -7,6 +7,7 @@ if __name__ == '__main__':
     train_data_paths = [
         '../output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-1022k',
         '../output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-laioncc'
+        '../output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-laioncc-w-1022k'
     ]
 
     train_losses = []
