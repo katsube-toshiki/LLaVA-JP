@@ -29,7 +29,7 @@ python $LLAVA_JP_HOME/train_llava.py \
     --data_path $LLAVA_JP_HOME/dataset/llava_v1_5_instruct_620k_ja_v2.json \
     --lazy_preprocess False \
     --is_multimodal True \
-    --image_folder $LLAVA_JP_HOME/dataset \
+    --image_folder $LLAVA_JP_HOME/dataset/llava-finetune \
     --image_aspect_ratio square \
     --image_size 768 \
     --optim adamw_bnb_8bit \
