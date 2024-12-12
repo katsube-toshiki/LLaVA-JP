@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
     train_data_paths = [
-        '../output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384',
-        '../output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384-357k'
+        '../output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-1022k',
+        '../output_llava/checkpoints/pretrain-llava-jp-1.3b-v1.1-laioncc'
     ]
 
     train_losses = []
@@ -24,4 +24,4 @@ if __name__ == '__main__':
     plt.xlabel('Step')
     plt.ylabel('Loss')
     plt.legend(loc='upper right')
-    plt.savefig("graph.png")
+    plt.savefig("pretrain.png")
