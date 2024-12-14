@@ -6,12 +6,12 @@ import matplotlib.pyplot as plt
 if __name__ == '__main__':
     train_data_paths = [
         {
-            'path': '../output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-1022k-to-gpt',
-            'label': '1022k-to-gpt',
+            'path': '../output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-laioncc-to-1022k',
+            'label': 'laioncc-to-1022k',
         },
         {
-            'path': '../output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-1022k-to-1022k',
-            'label': '1022k-to-1022k',
+            'path': '../output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-laioncc-to-gpt',
+            'label': 'laioncc-to-gpt',
         },
     ]
 
