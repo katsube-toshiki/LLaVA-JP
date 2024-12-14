@@ -30,4 +30,4 @@ if __name__ == '__main__':
     plt.xlabel('Step')
     plt.ylabel('Loss')
     plt.legend(loc='upper right')
-    plt.savefig("finetune_1022k.png")
+    plt.savefig("finetune_laioncc.png")
