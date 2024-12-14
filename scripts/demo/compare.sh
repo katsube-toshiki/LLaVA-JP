@@ -10,4 +10,4 @@ which python
 
 readonly LLAVA_JP_HOME="/work/gn53/k75057/projects/LLaVA-JP"
 
-python $LLAVA_JP_HOME/src/demo_compare.py
+python $LLAVA_JP_HOME/src/model_compare.py
