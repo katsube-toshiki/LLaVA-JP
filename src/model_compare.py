@@ -53,6 +53,13 @@ if __name__ == "__main__":
         conv_mode = "v1"
         conv = conv_templates[conv_mode].copy()
 
+        # create prompt
+        # ユーザー: <image>\n{prompt}
+        inp = DEFAULT_IMAGE_TOKEN + '\n' + prompt
+        conv.append_message(conv.roles[0], inp)
+        conv.append_message(conv.roles[1], None)
+        prompt = conv.get_prompt()
+
         # image pre-process
         image = Image.open(requests.get(image_url, stream=True).raw).convert('RGB')
         
@@ -73,13 +80,6 @@ if __name__ == "__main__":
                     return_tensors='pt', 
                     size={"height": image_size, "width": image_size}
                 )['pixel_values'].to(torch_dtype)
-
-            # create prompt
-            # ユーザー: <image>\n{prompt}
-            inp = DEFAULT_IMAGE_TOKEN + '\n' + prompt
-            conv.append_message(conv.roles[0], inp)
-            conv.append_message(conv.roles[1], None)
-            prompt = conv.get_prompt()
 
             input_ids = tokenizer_image_token(
                 prompt, 
