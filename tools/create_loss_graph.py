@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 if __name__ == '__main__':
     train_data_paths = [
         {
-            'path': '../output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-laioncc-to-gpt-w-1022k/checkpoint-48000',
+            'path': '../output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-laioncc-to-gpt-w-1022k',
             'label': 'laioncc-to-gpt-w-1022k',
         },
         {
