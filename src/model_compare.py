@@ -17,9 +17,22 @@ if __name__ == "__main__":
     model_args, data_args, training_args = parser.parse_args_into_dataclasses()
     # model_path = '/work/gn53/k75057/projects/LLaVA-JP/output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-siglip-so400m-patch14-384-357k'
     model_pathes = [
-        '/work/gn53/k75057/projects/LLaVA-JP/output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-laioncc-to-gpt',
-        '/work/gn53/k75057/projects/LLaVA-JP/output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-laioncc-to-1022k',
-        '/work/gn53/k75057/projects/LLaVA-JP/output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-1022k-to-gpt',
+        {
+            'path': '/work/gn53/k75057/projects/LLaVA-JP/output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-laioncc-to-gpt',
+            'name': 'laioncc-to-gpt',
+        },
+        {
+            'path': '/work/gn53/k75057/projects/LLaVA-JP/output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-laioncc-to-1022k',
+            'name': 'laioncc-to-1022k',
+        },
+        {
+            'path': '/work/gn53/k75057/projects/LLaVA-JP/output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-1022k-to-gpt',
+            'name': '1022k-to-gpt',
+        },
+        {
+            'path': '/work/gn53/k75057/projects/LLaVA-JP/output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-laioncc-to-gpt-w-1022k',
+            'name': 'laioncc-to-gpt-w-1022k',
+        },
     ]
     device = "cuda" if torch.cuda.is_available() else "cpu"
     torch_dtype = torch.bfloat16 if device=="cuda" else torch.float32
@@ -27,21 +40,23 @@ if __name__ == "__main__":
     models = []
 
     for model_path in model_pathes:
+        path = model_path['path']
+        name = model_path['name']
         model = LlavaGpt2ForCausalLM.from_pretrained(
-            model_path, 
+            path, 
             low_cpu_mem_usage=True,
             use_safetensors=True,
             torch_dtype=torch_dtype,
             device_map=device,
         )
         tokenizer = transformers.AutoTokenizer.from_pretrained(
-            model_path,
+            path,
             model_max_length=1532,
             padding_side="right",
             use_fast=False,
         )
         model.eval()
-        models.append([model, tokenizer])
+        models.append([model, tokenizer, name])
 
     while True:
 
@@ -63,7 +78,7 @@ if __name__ == "__main__":
         # image pre-process
         image = Image.open(requests.get(image_url, stream=True).raw).convert('RGB')
         
-        for model, tokenizer in models:
+        for model, tokenizer, name in models:
             image_size = model.get_model().vision_tower.image_processor.size["height"]
             if model.get_model().vision_tower.scales is not None:
                 image_size = model.get_model().vision_tower.image_processor.size["height"] * len(model.get_model().vision_tower.scales)
@@ -107,4 +122,5 @@ if __name__ == "__main__":
                     streamer=streamer,
                     use_cache=True,
                 )
+                print(f"Model: {name}")
                 print(output)
