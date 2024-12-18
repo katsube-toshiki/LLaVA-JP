@@ -30,8 +30,20 @@ if __name__ == "__main__":
             'name': '1022k-to-gpt',
         },
         {
+            'path': '/work/gn53/k75057/projects/LLaVA-JP/output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-1022k-to-1022k',
+            'name': '1022k-to-1022k',
+        },
+        {
             'path': '/work/gn53/k75057/projects/LLaVA-JP/output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-laioncc-to-gpt-w-1022k',
             'name': 'laioncc-to-gpt-w-1022k',
+        },
+        {
+            'path': '/work/gn53/k75057/projects/LLaVA-JP/output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-laioncc-w-1022k-to-1022k',
+            'name': 'laioncc-w-1022k-to-1022k',
+        },
+        {
+            'path': '/work/gn53/k75057/projects/LLaVA-JP/output_llava/checkpoints/finetune-llava-jp-1.3b-v1.1-laioncc-w-1022k-to-gpt',
+            'name': 'laioncc-w-1022k-to-gpt',
         },
     ]
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -123,4 +135,3 @@ if __name__ == "__main__":
                     use_cache=True,
                 )
                 print(f"Model: {name}")
-                print(output)
