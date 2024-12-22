@@ -15,6 +15,9 @@ source /work/gn53/k75057/musasabi/bin/activate
 readonly LLAVA_JP_HOME="/work/gn53/k75057/projects/LLaVA-JP"
 readonly COMMONCRAWL_HOME="/work/gn53/k75057/projects/commoncrawl"
 
+echo $CUDA_VISIBLE_DEVICES
+CUDA_VISIBLE_DEVICES=0,1
+
 python $LLAVA_JP_HOME/train_llava.py \
     --model_name_or_path llm-jp/llm-jp-1.3b-v1.0 \
     --version v1 \
