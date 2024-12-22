@@ -45,7 +45,6 @@ python $LLAVA_JP_HOME/train_llava.py \
     --per_device_train_batch_size 1 \
     --per_device_eval_batch_size 2 \
     --gradient_accumulation_steps 8 \
-    --num_gpus 2 \
     --evaluation_strategy "no" \
     --save_strategy "steps" \
     --save_steps 24000 \
