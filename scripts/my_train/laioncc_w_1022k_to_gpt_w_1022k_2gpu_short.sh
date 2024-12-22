@@ -1,6 +1,6 @@
 #!/bin/sh
 #PJM -L rscgrp=share-short
-#PJM -L gpu=2
+#PJM -L gpu=1
 #PJM --mail-list katsube@mi.t.u-tokyo.ac.jp
 #PJM -m b,e,r
 #PJM -g gn53
