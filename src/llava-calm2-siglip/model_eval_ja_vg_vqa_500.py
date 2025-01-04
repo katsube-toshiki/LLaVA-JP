@@ -78,4 +78,6 @@ if __name__ == "__main__":
 
     with open(os.path.join(save_dir, "ja_vg_vqa_500.json"), 'w') as f:
         json.dump(json_data, f, ensure_ascii=False, indent=2)
+        
+    print("save results to", save_dir)
 

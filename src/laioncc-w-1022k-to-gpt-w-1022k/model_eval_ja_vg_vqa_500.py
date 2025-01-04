@@ -2,6 +2,9 @@ import torch
 import transformers
 import json
 import sys
+import os
+from datasets import load_dataset
+from tqdm import tqdm
 
 from transformers.generation.streamers import TextStreamer
 from llava.constants import DEFAULT_IMAGE_TOKEN, IMAGE_TOKEN_INDEX
@@ -13,7 +16,6 @@ from llava.train.dataset import tokenizer_image_token
 sys.path.append('/work/gn53/k75057/projects/LLaVA-JP/src')
 from metrics import compute_score
 
-from datasets import load_dataset
 
 if __name__ == "__main__":
 
@@ -48,7 +50,7 @@ if __name__ == "__main__":
     answers = []
     predictions = []
 
-    for data in dataset:
+    for data in tqdm(dataset):
         # image pre-process
         image = data['image']
         image_size = model.get_model().vision_tower.image_processor.size["height"]
@@ -129,6 +131,11 @@ if __name__ == "__main__":
         "results": results,
     }
 
-    with open("/work/gn53/k75057/projects/LLaVA-JP/results/laioncc-w-1022k-to-gpt-w-1022k/ja_vg_vqa_500.json", 'w') as f:
-        json.dump(json_data, f, ensure_ascii=False, indent=2)
+    save_dir = "/work/gn53/k75057/projects/LLaVA-JP/results/laioncc-w-1022k-to-gpt-w-1022k"
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
 
+    with open(os.path.join(save_dir, "ja_vg_vqa_500.json"), 'w') as f:
+        json.dump(json_data, f, ensure_ascii=False, indent=2)
+        
+    print("save results to", save_dir)

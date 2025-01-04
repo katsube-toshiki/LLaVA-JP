@@ -18,6 +18,7 @@ if __name__ == "__main__":
     model_id = "SakanaAI/EvoVLM-JP-v1-7B"
     model = AutoModelForVision2Seq.from_pretrained(model_id, torch_dtype=torch.float16)
     processor = AutoProcessor.from_pretrained(model_id)
+    processor.tokenizer.chat_template = "{% if not add_generation_prompt is defined %}{% set add_generation_prompt = false %}{% endif %}{% for message in messages %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"
     model.to(device)
 
     # 推論モードに設定
@@ -73,10 +74,12 @@ if __name__ == "__main__":
         "results": results,
     }
 
-    save_dir = "/work/gn53/k75057/projects/LLaVA-JP/results/llava-calm2-siglip"
+    save_dir = "/work/gn53/k75057/projects/LLaVA-JP/results/EvoVLM-JP-v1-7B"
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
     with open(os.path.join(save_dir, "ja_vlm_bench_in_the_wild.json"), 'w') as f:
         json.dump(json_data, f, ensure_ascii=False, indent=2)
+    
+    print("save results to", save_dir)
 

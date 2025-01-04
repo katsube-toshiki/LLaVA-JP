@@ -104,10 +104,11 @@ if __name__ == "__main__":
         "results": results,
     }
 
-    save_dir = "/work/gn53/k75057/projects/LLaVA-JP/results/llava-calm2-siglip"
+    save_dir = "/work/gn53/k75057/projects/LLaVA-JP/results/japanese-stable-vlm"
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
     with open(os.path.join(save_dir, "ja_vlm_bench_in_the_wild.json"), 'w') as f:
         json.dump(json_data, f, ensure_ascii=False, indent=2)
 
+    print("save results to", save_dir)
