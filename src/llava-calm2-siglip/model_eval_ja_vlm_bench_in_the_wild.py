@@ -3,6 +3,7 @@ import json
 import sys
 import os
 from datasets import load_dataset
+from tqdm import tqdm
 
 from transformers import AutoProcessor, LlavaForConditionalGeneration
 
@@ -27,7 +28,7 @@ if __name__ == "__main__":
     answers = []
     predictions = []
 
-    for data in dataset:
+    for data in tqdm(dataset):
         # image pre-process
         image = data['image']
 
@@ -40,7 +41,7 @@ if __name__ == "__main__":
 
         # create prompt
         prompt = "USER: <image>\n"
-        prompt += "この画像を説明してください。\n"
+        prompt += "{}\n".format(question)
         prompt += "ASSISTANT: "
 
         input_ids = processor(text=prompt, images=image, return_tensors="pt").to(0, torch.bfloat16)
