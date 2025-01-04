@@ -11,7 +11,7 @@ from llava.train.arguments_dataclass import ModelArguments, DataArguments, Train
 from llava.train.dataset import tokenizer_image_token
 
 sys.path.append('/work/gn53/k75057/projects/LLaVA-JP/src')
-from utils import compute_score
+from metrics import compute_score
 
 from datasets import load_dataset
 
