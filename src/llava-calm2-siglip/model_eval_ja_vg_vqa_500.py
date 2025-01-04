@@ -54,7 +54,7 @@ if __name__ == "__main__":
                     do_sample=True,
                     temperature=0.2,
                 )
-                output = processor.tokenizer.decode(output_ids[0][input_ids.size(1)::-1], clean_up_tokenization_spaces=False)
+                output = processor.tokenizer.decode(output_ids[0][:-1], clean_up_tokenization_spaces=False)
 
                 predictions.append(output)
 
