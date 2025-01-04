@@ -1,6 +1,7 @@
 import torch
 import transformers
 import json
+import sys
 
 from transformers.generation.streamers import TextStreamer
 from llava.constants import DEFAULT_IMAGE_TOKEN, IMAGE_TOKEN_INDEX
@@ -9,7 +10,8 @@ from llava.model.llava_gpt2 import LlavaGpt2ForCausalLM
 from llava.train.arguments_dataclass import ModelArguments, DataArguments, TrainingArguments
 from llava.train.dataset import tokenizer_image_token
 
-from ..utils import compute_score
+sys.path.append('/work/gn53/k75057/projects/LLaVA-JP/src')
+from utils import compute_score
 
 from datasets import load_dataset
 
