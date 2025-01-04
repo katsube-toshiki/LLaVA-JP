@@ -106,21 +106,19 @@ if __name__ == "__main__":
                     streamer=streamer,
                     use_cache=True,
                 )
-                output_ids = [token_id for token_id in output_ids.tolist()[0] if token_id != IMAGE_TOKEN_INDEX]
+                output_ids = [token_id for token_id in output_ids.tolist()[0][input_ids.size(1):] if token_id != IMAGE_TOKEN_INDEX]
                 output = tokenizer.decode(output_ids, skip_special_tokens=True)
 
                 predictions.append(output)
 
     json_data = {
-        "JA-VG-VQA-500": {
-            "results": {
-                "question": questions,
-                "answer": answers,
-                "prediction": predictions
-            }
+        "results": {
+            "question": questions,
+            "answer": answers,
+            "prediction": predictions
         }
     }
 
-    with open("/work/gn53/k75057/projects/LLaVA-JP/results/mymodel.json", 'w') as f:
+    with open("/work/gn53/k75057/projects/LLaVA-JP/results/laioncc-w-1022k-to-gpt-w-1022k/ja_vg_vqa_500.json", 'w') as f:
         json.dump(json_data, f, ensure_ascii=False, indent=2)
 
