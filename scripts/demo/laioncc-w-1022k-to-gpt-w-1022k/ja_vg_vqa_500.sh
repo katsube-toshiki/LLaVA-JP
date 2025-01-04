@@ -15,4 +15,4 @@ export PYTHONPATH=$PYTHONPATH:/work/gn53/k75057/projects/LLaVA-JP
 
 cd $LLAVA_JP_HOME
 
-python src/model_eval.py
+python src/laioncc-w-1022k-to-gpt-w-1022k/model_eval_ja_vg_vqa_500.py
