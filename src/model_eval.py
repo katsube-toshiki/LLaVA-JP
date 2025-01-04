@@ -121,6 +121,6 @@ if __name__ == "__main__":
         }
     }
 
-    with open("results/mymodel.json", 'w') as f:
+    with open("/work/gn53/k75057/projects/LLaVA-JP/results/mymodel.json", 'w') as f:
         json.dump(json_data, f, ensure_ascii=False, indent=2)
 
