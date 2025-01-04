@@ -118,6 +118,6 @@ if __name__ == "__main__":
         }
     }
 
-    with open("/work/gn53/k75057/projects/LLaVA-JP/results/results/laioncc-w-1022k-to-gpt-w-1022k/ja_vlm_bench_in_the_wild.json", 'w') as f:
+    with open("/work/gn53/k75057/projects/LLaVA-JP/results/laioncc-w-1022k-to-gpt-w-1022k/ja_vlm_bench_in_the_wild.json", 'w') as f:
         json.dump(json_data, f, ensure_ascii=False, indent=2)
 
