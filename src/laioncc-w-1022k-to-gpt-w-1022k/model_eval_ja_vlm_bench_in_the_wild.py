@@ -9,6 +9,8 @@ from llava.model.llava_gpt2 import LlavaGpt2ForCausalLM
 from llava.train.arguments_dataclass import ModelArguments, DataArguments, TrainingArguments
 from llava.train.dataset import tokenizer_image_token
 
+from ..utils import compute_score
+
 from datasets import load_dataset
 
 if __name__ == "__main__":
@@ -110,12 +112,18 @@ if __name__ == "__main__":
 
             predictions.append(output)
                 
+    results = {
+        "question": questions,
+        "answer": answers,
+        "prediction": predictions
+    }
+
+    # 評価
+    metrics = compute_score(results)
+
     json_data = {
-        "results": {
-            "question": questions,
-            "answer": answers,
-            "prediction": predictions
-        }
+        "metrics": metrics,
+        "results": results,
     }
 
     with open("/work/gn53/k75057/projects/LLaVA-JP/results/laioncc-w-1022k-to-gpt-w-1022k/ja_vlm_bench_in_the_wild.json", 'w') as f:
