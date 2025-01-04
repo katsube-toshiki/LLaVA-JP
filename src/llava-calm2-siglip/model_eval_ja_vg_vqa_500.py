@@ -47,16 +47,15 @@ if __name__ == "__main__":
             input_ids = processor(text=prompt, images=image, return_tensors="pt").to(0, torch.bfloat16)
 
             # predict
-            with torch.inference_mode():
-                output_ids = model.generate(
-                    **input_ids,
-                    max_length=500,
-                    do_sample=True,
-                    temperature=0.2,
-                )
-                output = processor.tokenizer.decode(output_ids[0][input_ids['input_ids'].size(1):-1], clean_up_tokenization_spaces=False)
+            output_ids = model.generate(
+                **input_ids,
+                max_length=500,
+                do_sample=True,
+                temperature=0.2,
+            )
+            output = processor.tokenizer.decode(output_ids[0][input_ids['input_ids'].size(1):-1], clean_up_tokenization_spaces=False)
 
-                predictions.append(output)
+            predictions.append(output)
 
     results = {
         "question": questions,
