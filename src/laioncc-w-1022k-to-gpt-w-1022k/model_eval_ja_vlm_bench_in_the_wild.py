@@ -40,7 +40,7 @@ if __name__ == "__main__":
     )
     model.eval()
 
-    # JA-VG-VQA-500 datasetを読み込む
+    # JA-VLM-Bench-In-the-Wildを読み込む
     dataset = load_dataset("SakanaAI/JA-VLM-Bench-In-the-Wild", split="test")
 
     # 保存用リスト
