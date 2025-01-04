@@ -1,6 +1,5 @@
 #!/bin/sh
-#PJM -L rscgrp=share
-#PJM -L elapse=1:00:00
+#PJM -L rscgrp=share-short
 #PJM -L gpu=1
 #PJM -g gn53
 #PJM -X
