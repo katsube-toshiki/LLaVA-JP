@@ -71,8 +71,8 @@ if __name__ == "__main__":
         with torch.no_grad():
             out = model.generate(**inputs, max_length=256, do_sample=False, temperature=0., no_repeat_ngram_size=2)
 
-        # print result
-        output = processor.tokenizer.batch_decode(out)
+        output_ids = out[:, inputs['input_ids'].shape[1] :]
+        output = processor.tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
 
         predictions.append(output)
                 
