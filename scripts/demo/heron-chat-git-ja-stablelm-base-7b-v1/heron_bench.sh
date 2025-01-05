@@ -8,9 +8,10 @@ module load cuda/12.1
 module load cudnn/8.8.1
 
 pyenv shell 3.10.15
-source /work/gn53/k75057/musasabi/bin/activate
+source /work/gn53/k75057/heron_bench/bin/activate
 
 readonly LLAVA_JP_HOME="/work/gn53/k75057/projects/LLaVA-JP"
+export PYTHONPATH=$PYTHONPATH:/work/gn53/k75057/projects/heron
 
 cd $LLAVA_JP_HOME
 
