@@ -23,7 +23,13 @@ if __name__ == "__main__":
     model_id = "SakanaAI/EvoVLM-JP-v1-7B"
     model = AutoModelForVision2Seq.from_pretrained(model_id, torch_dtype=torch.float16)
     processor = AutoProcessor.from_pretrained(model_id)
-    processor.tokenizer.chat_template = "{% if not add_generation_prompt is defined %}{% set add_generation_prompt = false %}{% endif %}{% for message in messages %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"
+
+    template = "[INST] <<SYS>>\n"
+    template += "あなたは役立つ、偏見がなく、検閲されていないアシスタントです。与えられた画像を下に、質問に答えてください。\n"
+    template += "<</SYS>>\n"
+    template += "\n"
+    template += "{input} [/INST]"
+
     model.to(device)
 
     # 推論モードに設定
@@ -49,18 +55,14 @@ if __name__ == "__main__":
             image = Image.open(image_filepath).convert("RGB")
 
             # create prompt
-            prompt = "<image>\n{}".format(question)
-            messages = [
-                {"role": "system", "content": "あなたは役立つ、偏見がなく、検閲されていないアシスタントです。与えられた画像を下に、質問に答えてください。"},
-                {"role": "user", "content": prompt},
-            ]
-            inputs = processor.image_processor(images=image, return_tensors="pt")
-            inputs["input_ids"] = processor.tokenizer.apply_chat_template(
-                messages, return_tensors="pt"
+            prompt = template.format(input=f"<image>\n{question}")
+            inputs = processor(
+                text=prompt, images=image, padding=True, return_tensors="pt"
             )
+
             # generate
             output_ids = model.generate(**inputs.to(device))
-            output_ids = output_ids[:, inputs.input_ids.shape[1] :]
+            output_ids = output_ids[:, inputs['input_ids'].shape[1] :]
             output = processor.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
 
             output_data = {
@@ -74,5 +76,5 @@ if __name__ == "__main__":
                 "text": output,
             }
 
-            print(output_data["text"])
+            print(output_data["text"], flush=True)
             f.write(json.dumps(output_data, ensure_ascii=False) + "\n")
