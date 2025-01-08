@@ -22,7 +22,11 @@ if __name__ == "__main__":
     image_dir = "/work/gn53/k75057/projects/heron/playground/data/japanese-heron-bench/images"
 
     # output file
-    output_file = "/work/gn53/k75057/projects/LLaVA-JP/results/laioncc-w-1022k-to-gpt/heron_bench.jsonl"
+    output_dir = "/work/gn53/k75057/projects/LLaVA-JP/results/laioncc-w-1022k-to-gpt"
+    output_file = os.path.join(output_dir, "heron_bench.jsonl")
+
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     # vlmのモデルを読み込む
     parser = transformers.HfArgumentParser(
